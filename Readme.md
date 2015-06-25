@@ -1,109 +1,15 @@
-# SuperAgent [![Build Status](https://travis-ci.org/visionmedia/superagent.svg?branch=master)](https://travis-ci.org/visionmedia/superagent)
+# SuperAgent [![Build Status](https://travis-ci.org/fiatjaf/superagent-cors.svg?branch=master)](https://travis-ci.org/fiatjaf/superagent-cors)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/shtylman-superagent.svg)](https://saucelabs.com/u/shtylman-superagent)
-
-SuperAgent is a small progressive __client-side__ HTTP request library, and __Node.js__ module with the same API, sporting many high-level HTTP client features. View the [docs](http://visionmedia.github.com/superagent/).
-
-![super agent](http://f.cl.ly/items/3d282n3A0h0Z0K2w0q2a/Screenshot.png)
+**THIS FORK** The only thing this fork does is to remove the default `.type('json')` call that invariably sends a `Content-Type` header, no matter which kind of request you are going to do, and then breaks CORS. For more information about the issue, see https://github.com/visionmedia/superagent/issues/501.
 
 ## Installation
 
-node:
-
 ```
-$ npm install superagent
+$ npm install fiatjaf/superagent
 ```
 
-component:
+The module is called `superagent`, not `superagent-cors`, so you can use it in your whole project and you don't need to change any line. New superagent versions will be merged here.
 
-```
-$ component install visionmedia/superagent
-```
+![super agent](http://f.cl.ly/items/3d282n3A0h0Z0K2w0q2a/Screenshot.png)
 
-Works with [browserify](https://github.com/substack/node-browserify) and should work with [webpack](https://github.com/visionmedia/superagent/wiki/Superagent-for-Webpack)
-
-```js
-request
-  .post('/api/pet')
-  .send({ name: 'Manny', species: 'cat' })
-  .set('X-API-Key', 'foobar')
-  .set('Accept', 'application/json')
-  .end(function(err, res){
-    // Calling the end function will send the request
-  });
-```
-
-## Supported browsers
-
-Tested browsers:
-
-- Latest Android
-- Latest Firefox
-- Latest Chrome
-- IE9 through latest
-- Latest iPhone
-- Latest Safari
-
-Even though IE9 is supported, a polyfill `window.btoa` is needed to use basic auth.
-
-# Plugins
-
-Superagent is easily extended via plugins.
-
-```js
-var nocache = require('superagent-no-cache');
-var request = require('superagent');
-var prefix = require('superagent-prefix')('/static');
-
-request
-.get('/some-url')
-.use(prefix) // Prefixes *only* this request
-.use(nocache) // Prevents caching of *only* this request
-.end(function(err, res){
-    // Do something
-});
-```
-
-Existing plugins:
- * [superagent-no-cache](https://github.com/johntron/superagent-no-cache) - prevents caching by including Cache-Control header
- * [superagent-prefix](https://github.com/johntron/superagent-prefix) - prefixes absolute URLs (useful in test environment)
- * [superagent-mock](https://github.com/M6Web/superagent-mock) - simulate HTTP calls by returning data fixtures based on the requested URL
-
-Please prefix your plugin with `superagent-*` so that it can easily be found by others.
-
-For superagent extensions such as couchdb and oauth visit the [wiki](https://github.com/visionmedia/superagent/wiki).
-
-## Running node tests
-
-Install dependencies:
-
-```shell
-$ npm install
-```
-Run em!
-
-```shell
-$ make test
-```
-
-## Running browser tests
-
-Install dependencies:
-
-```shell
-$ npm install
-```
-
-Start the test runner:
-
-```shell
-$ make test-browser-local
-```
-
-Visit `http://localhost:4000/__zuul` in your browser.
-
-Edit tests and refresh your browser. You do not have to restart the test runner.
-
-## License
-
-MIT
+For more information and documentation, please refer to the original superagent docs: http://visionmedia.github.io/superagent/
